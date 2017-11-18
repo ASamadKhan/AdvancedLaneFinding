@@ -20,8 +20,8 @@ The goals / steps of this project are the following:
 [//]: # (Image References)
 
 [image1]: ./output_images/ChessImagesForCalibration.png "Undistorted"
-[image2]: ./output_images/UndistortedChessImage.png "Road Transformed"
-[image3]: ./examples/binary_combo_example.jpg "Binary Example"
+[image2]: ./output_images/UndistortedChessImage.png "Chess_Unidistort"
+[image3]: ./output_images/ExampleUndistortedImg.png "Road Transformed"
 [image4]: ./examples/warped_straight_lines.jpg "Warp Example"
 [image5]: ./examples/color_fit_lines.jpg "Fit Visual"
 [image6]: ./examples/example_output.jpg "Output"
@@ -54,9 +54,9 @@ an `objp` is just a replicated array of coordinates, and `objpoints` will be app
 
 #### 1. Provide an example of a distortion-corrected image.
 
-To demonstrate this step, I will describe how I apply the distortion correction to one of the test images like this one:
-![alt text][image2]
-
+The image below shows the results of applying undistort to one of the project test image:
+![alt text][image3]
+The undistort is more clear from the corners and the hood of the car.
 #### 2. Describe how (and identify where in your code) you used color transforms, gradients or other methods to create a thresholded binary image.  Provide an example of a binary image result.
 
 I used a combination of color and gradient thresholds to generate a binary image (thresholding steps at lines # through # in `another_file.py`).  Here's an example of my output for this step.  (note: this is not actually from one of the test images)
