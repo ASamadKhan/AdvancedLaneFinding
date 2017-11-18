@@ -22,10 +22,10 @@ The goals / steps of this project are the following:
 [image1]: ./output_images/ChessImagesForCalibration.png "Undistorted"
 [image2]: ./output_images/UndistortedChessImage.png "Chess_Unidistort"
 [image3]: ./output_images/ExampleUndistortedImg.png "Road Transformed"
-[image4]: ./examples/warped_straight_lines.jpg "Warp Example"
-[image5]: ./examples/color_fit_lines.jpg "Fit Visual"
-[image6]: ./examples/example_output.jpg "Output"
-[video1]: ./project_video.mp4 "Video"
+[image4]: ./output_images/unwarpped.png "Perspective Transform"
+[image6]: ./examples/color_fit_lines.jpg "Fit Visual"
+[image7]: ./examples/example_output.jpg "Output"
+[video8]: ./project_video.mp4 "Video"
 
 ## [Rubric](https://review.udacity.com/#!/rubrics/571/view) Points
 
