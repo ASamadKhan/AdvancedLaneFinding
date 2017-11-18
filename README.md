@@ -45,10 +45,9 @@ You're reading it!
 
 The code for this step is contained in the first code cell of the IPython notebook located in mai folder with name AdvanceLaneFinding.ipynb".
 
-An input comprises of number of chessboard images taken with the same camera from different angles. The chessboard has (9,6) corner points. For each chessboard image corners are detected using `findChessboardCorner` cv2 function. The detected image corners are added into **imgpoints** list, which are in fact the pixel locations of chessboard corners for each image. an `objp` is just a replicated array of coordinates, and `objpoints` will be appended with a copy of it every time I successfully detect all chessboard corners in a test image.
-I then used the output `objpoints` and `imgpoints` to compute the camera calibration and distortion coefficients using the `cv2.calibrateCamera()` function.  I applied this distortion correction to the test image using the `cv2.undistort()` function and obtained this result: 
-
+An input comprises of number of chessboard images taken with the same camera from different angles. The chessboard has (9,6) corner points. For each chessboard image corners are detected using `findChessboardCorner` cv2 function. The detected image corners are added into **imgpoints** list, which are in fact the pixel locations of chessboard corners for each image. The corners are drawn and siplayed in the below figure usig `drawChessboardCorners` function.
 ![alt text][image1]
+an `objp` is just a replicated array of coordinates, and `objpoints` will be appended with a copy of it every time I successfully detect all chessboard corners in a test image.I then used the output `objpoints` and `imgpoints` to compute the camera calibration and distortion coefficients using the `cv2.calibrateCamera()` function.  I applied this distortion correction to the test image using the `cv2.undistort()` function and obtained this result: 
 ![alt text][image2]
 
 ### Pipeline (single images)
