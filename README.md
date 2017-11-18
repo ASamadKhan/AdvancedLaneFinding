@@ -22,7 +22,7 @@ The goals / steps of this project are the following:
 [image1]: ./output_images/ChessImagesForCalibration.png "Undistorted"
 [image2]: ./output_images/UndistortedChessImage.png "Chess_Unidistort"
 [image3]: ./output_images/ExampleUndistortedImg.png "Road Transformed"
-[image4]: ./output_images/unwarpped.png "Perspective Transform"
+[image4]: ./output_images/unwrapped.png "Perspective Transform"
 [image6]: ./examples/color_fit_lines.jpg "Fit Visual"
 [image7]: ./examples/example_output.jpg "Output"
 [video8]: ./project_video.mp4 "Video"
@@ -65,29 +65,31 @@ I used a combination of color and gradient thresholds to generate a binary image
 
 #### 3. Describe how (and identify where in your code) you performed a perspective transform and provide an example of a transformed image.
 
-The code for my perspective transform includes a function called `warper()`, which appears in lines 1 through 8 in the file `example.py` (output_images/examples/example.py) (or, for example, in the 3rd code cell of the IPython notebook).  The `warper()` function takes as inputs an image (`img`), as well as source (`src`) and destination (`dst`) points.  I chose the hardcode the source and destination points in the following manner:
+The code for my perspective transform includes a function called `warper()`, which appears in 4th and 5th code cell of `AdvanceLaneFinding.ipynb` .  The `warper()` function takes as inputs an image (`img`), source (`src`) and destination (`dst`) points.  I chose the hardcode the source and destination points in the following manner:
 
 ```python
-src = np.float32(
-    [[(img_size[0] / 2) - 55, img_size[1] / 2 + 100],
-    [((img_size[0] / 6) - 10), img_size[1]],
-    [(img_size[0] * 5 / 6) + 60, img_size[1]],
-    [(img_size[0] / 2 + 55), img_size[1] / 2 + 100]])
-dst = np.float32(
-    [[(img_size[0] / 4), 0],
-    [(img_size[0] / 4), img_size[1]],
-    [(img_size[0] * 3 / 4), img_size[1]],
-    [(img_size[0] * 3 / 4), 0]])
+h,w = undistorted_exImg.shape[:2]
+
+# define source and destination points for transform
+src = np.float32([(575,464),
+                  (707,464), 
+                  (258,682), 
+                  (1049,682)])
+dst = np.float32([(450,0),
+                  (w-450,0),
+                  (450,h),
+                  (w-450,h)])
 ```
 
-This resulted in the following source and destination points:
+ I also choose the points programmatically but these points at the end worked with an assumption that that the camera position will remain constant and that the road in the videos will remain relatively flat.
+ This resulted in the following source and destination points:
 
 | Source        | Destination   | 
 |:-------------:|:-------------:| 
-| 585, 460      | 320, 0        | 
-| 203, 720      | 320, 720      |
-| 1127, 720     | 960, 720      |
-| 695, 460      | 960, 0        |
+| 575, 464      | 450, 0        | 
+| 707, 464      | w-450, 0      |
+| 258, 682     | 450, h      |
+| 1049, 682      | w-450, h        |
 
 I verified that my perspective transform was working as expected by drawing the `src` and `dst` points onto a test image and its warped counterpart to verify that the lines appear parallel in the warped image.
 
