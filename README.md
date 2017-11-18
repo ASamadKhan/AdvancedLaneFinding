@@ -23,9 +23,12 @@ The goals / steps of this project are the following:
 [image2]: ./output_images/UndistortedChessImage.png "Chess_Unidistort"
 [image3]: ./output_images/ExampleUndistortedImg.png "Road Transformed"
 [image4]: ./output_images/unwrapped.png "Perspective Transform"
-[image6]: ./examples/color_fit_lines.jpg "Fit Visual"
-[image7]: ./examples/example_output.jpg "Output"
-[video8]: ./project_video.mp4 "Video"
+[image5]: ./output_images/ThreeColorChanels.png "ColorSpaces"
+[image6]: ./output_images/LChannel.png "LChanel"
+[image7]: ./output_images/BChanel.png "BChanel"
+[image8]: ./output_images/PipelineOnImages.png "PipeLine"
+[image9]: ./examples/example_output.jpg "Output"
+[video10]: ./project_video.mp4 "Video"
 
 ## [Rubric](https://review.udacity.com/#!/rubrics/571/view) Points
 
@@ -59,9 +62,15 @@ The image below shows the results of applying undistort to one of the project te
 The undistort is more clear from the corners and the hood of the car.
 #### 2. Describe how (and identify where in your code) you used color transforms, gradients or other methods to create a thresholded binary image.  Provide an example of a binary image result.
 
-I used a combination of color and gradient thresholds to generate a binary image (thresholding steps at lines # through # in `another_file.py`).  Here's an example of my output for this step.  (note: this is not actually from one of the test images)
+I used a combination of color and gradient thresholds to generate a binary image but it was not working well for me. below image shows different color channels for 3 color spaces.
 
-![alt text][image3]
+![alt text][image5]
+I chose to use just the L channel of the HLS color space to isolate white lines as shown in the below image
+![alt text][image6]
+I Used  B channel of the LAB colorspace to isolate yellow lines as shown in the below image.
+![alt text][image7]
+Below are the result of applying pipeline to test images 
+![alt text][image8]
 
 #### 3. Describe how (and identify where in your code) you performed a perspective transform and provide an example of a transformed image.
 
