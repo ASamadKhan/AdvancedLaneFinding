@@ -70,8 +70,10 @@ I used a combination of color and gradient thresholds to generate a binary image
 I chose to use just the L channel of the HLS color space to isolate white lines as shown in the below image
 ![alt text][image6]
 I Used  B channel of the LAB colorspace to isolate yellow lines as shown in the below image.
+
 ![alt text][image7]
 Below are the result of applying pipeline to test images 
+
 ![alt text][image8]
 
 #### 3. Describe how (and identify where in your code) you performed a perspective transform and provide an example of a transformed image.
