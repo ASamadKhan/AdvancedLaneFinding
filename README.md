@@ -30,6 +30,8 @@ The goals / steps of this project are the following:
 [image9]: ./output_images/polyfit.png "Polyfit"
 [image10]: ./output_images/histogram.png "Polyfit"
 [image11]: ./output_images/polyfit2.png "Polyfit"
+[image12]: ./output_images/drawlane.png "drawlane"
+[image13]: ./output_images/draw_data.png "draw_data"
 [video10]: ./project_video.mp4 "Video"
 
 ## [Rubric](https://review.udacity.com/#!/rubrics/571/view) Points
@@ -120,13 +122,23 @@ histogram with the two peaks nearest the center are visible from below image
 
 #### 5. Describe how (and identify where in your code) you calculated the radius of curvature of the lane and the position of the vehicle with respect to center.
 
-I did this in lines # through # in my code in `my_other_file.py`
+The code for the raduis of curvature of the lane is in cell titled "Radius Curvature" using this line of code (The overall logic):
+after calculating (the y-squared coefficient) of the second order polynomial fit.
+`curve_radius = ((1 + (2*first coefficient*y_0*y_meters_per_pixel + second (y) coefficient)**2)**1.5) / np.absolute(2*first coefficient)`
+y_0 is the y position within the image upon which the curvature calculation is based. y_meters_per_pixel is the factor used for converting from pixels to meters. This conversion was also used to generate a new fit with coefficients in terms of meters.
+
+The position of the vehicle with respect to the center of the lane is calculated with the following lines of code:
+
+`lane_center_position = (r_fit_x_int + l_fit_x_int) /2
+center_dist = (car_position - lane_center_position) * x_meters_per_pix`
 
 #### 6. Provide an example image of your result plotted back down onto the road such that the lane area is identified clearly.
 
-I implemented this step in lines # through # in my code in `yet_another_file.py` in the function `map_lane()`.  Here is an example of my result on a test image:
+`drawlane` function Draw Curvature Radius and Distance from Center Data onto the Original Image in the Jupyter notebook.  The image below is an example of the results of the draw_lane function:
 
-![alt text][image6]
+![alt text][image12]
+`draw_data` function, which writes text identifying the curvature radius and vehicle position data onto the original image:
+![alt_text][image13]
 
 ---
 
