@@ -32,7 +32,7 @@ The goals / steps of this project are the following:
 [image11]: ./output_images/polyfit2.png "Polyfit"
 [image12]: ./output_images/drawlane.png "drawlane"
 [image13]: ./output_images/draw_data.png "draw_data"
-[video10]: ./project_video.mp4 "Video"
+[video10]: ./project_video_output.mp4 "Video"
 
 ## [Rubric](https://review.udacity.com/#!/rubrics/571/view) Points
 
