@@ -115,19 +115,19 @@ I verified that my perspective transform was working as expected by drawing the 
 Jupyter notebook with functions "sliding_window_polyfit" and "polyfit_using_prev_fit" identifies lane lines and fit a second order polynomial to both right and left lane lines. an histogram of the bottom half of the image and finds the bottom-most x position (or "base") of the left and right lane lines. I changed into quarters of the histogram just left and right of the midpoint. This helped to reject lines from adjacent lanes. The function then identifies ten windows from which to identify lane pixels, each one centered on the midpoint of the pixels from the window below. This effectively "follows" the lane lines up to the top of the binary image, and speeds processing by only searching for activated pixels over a small portion of the image. Pixels belonging to each lane line are identified and the Numpy polyfit() method fits a second order polynomial to each set of pixels. The image below demonstrates how this process works:
 
 ![alt text][image9]
-histogram with the two peaks nearest the center are visible from below image
+<br />histogram with the two peaks nearest the center are visible from below image<br />
 ![alt text][image10]
- using `polyfit_using_prev_fit` I generated the below image. The green shaded area is the range from the previous fit, and the yellow lines and red and blue pixels are from the current image
+ <br />using `polyfit_using_prev_fit` I generated the below image. The green shaded area is the range from the previous fit, and the yellow lines and red and blue pixels are from the current image<br />
 ![alt text][image11]
 
 #### 5. Describe how (and identify where in your code) you calculated the radius of curvature of the lane and the position of the vehicle with respect to center.
 
 The code for the raduis of curvature of the lane is in cell titled "Radius Curvature" using this line of code (The overall logic):
-after calculating (the y-squared coefficient) of the second order polynomial fit.
-`curve_radius = ((1 + (2*first coefficient*y_0*y_meters_per_pixel + second (y) coefficient)**2)**1.5) / np.absolute(2*first coefficient)`
+after calculating (the y-squared coefficient) of the second order polynomial fit.<br />
+`curve_radius = ((1 + (2*first coefficient*y_0*y_meters_per_pixel + second (y) coefficient)**2)**1.5) / np.absolute(2*first coefficient)`<br />
 y_0 is the y position within the image upon which the curvature calculation is based. y_meters_per_pixel is the factor used for converting from pixels to meters. This conversion was also used to generate a new fit with coefficients in terms of meters.
 
-The position of the vehicle with respect to the center of the lane is calculated with the following lines of code:
+The position of the vehicle with respect to the center of the lane is calculated with the following lines of code:<br />
 
 `lane_center_position = (r_fit_x_int + l_fit_x_int) /2
 center_dist = (car_position - lane_center_position) * x_meters_per_pix`
@@ -137,7 +137,7 @@ center_dist = (car_position - lane_center_position) * x_meters_per_pix`
 `drawlane` function Draw Curvature Radius and Distance from Center Data onto the Original Image in the Jupyter notebook.  The image below is an example of the results of the draw_lane function:
 
 ![alt text][image12]
-`draw_data` function, which writes text identifying the curvature radius and vehicle position data onto the original image:
+<br />`draw_data` function, which writes text identifying the curvature radius and vehicle position data onto the original image:<br />
 ![alt_text][image13]
 
 ---
@@ -154,4 +154,4 @@ Here's a [link to my video result](./output_images/project_video_output.mp4)
 
 #### 1. Briefly discuss any problems / issues you faced in your implementation of this project.  Where will your pipeline likely fail?  What could you do to make it more robust?
 
-Here I'll talk about the approach I took, what techniques I used, what worked and why, where the pipeline might fail and how I might improve it if I were going to pursue this project further.  
+The problems I encountered were almost exclusively due to lighting conditions, shadows, discoloration. I faced a lot of difficulties in this assignment.  
