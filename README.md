@@ -108,7 +108,7 @@ I verified that my perspective transform was working as expected by drawing the 
 
 Jupyter notebook with functions "sliding_window_polyfit" and "polyfit_using_prev_fit" identifies lane lines and fit a second order polynomial to both right and left lane lines. an histogram of the bottom half of the image and finds the bottom-most x position (or "base") of the left and right lane lines. I changed into quarters of the histogram just left and right of the midpoint. This helped to reject lines from adjacent lanes. The function then identifies ten windows from which to identify lane pixels, each one centered on the midpoint of the pixels from the window below. This effectively "follows" the lane lines up to the top of the binary image, and speeds processing by only searching for activated pixels over a small portion of the image. Pixels belonging to each lane line are identified and the Numpy polyfit() method fits a second order polynomial to each set of pixels. The image below demonstrates how this process works:
 
-![alt text][image5]
+![alt text][image9]
 
 #### 5. Describe how (and identify where in your code) you calculated the radius of curvature of the lane and the position of the vehicle with respect to center.
 
