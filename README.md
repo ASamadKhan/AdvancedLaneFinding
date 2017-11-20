@@ -27,7 +27,7 @@ The goals / steps of this project are the following:
 [image6]: ./output_images/LChannel.png "LChanel"
 [image7]: ./output_images/BChanel.png "BChanel"
 [image8]: ./output_images/PipelineOnImages.png "PipeLine"
-[image9]: ./examples/example_output.jpg "Output"
+[image9]: ./output_images/polyfit.png "Polyfit"
 [video10]: ./project_video.mp4 "Video"
 
 ## [Rubric](https://review.udacity.com/#!/rubrics/571/view) Points
