@@ -72,31 +72,29 @@ The below image is resulted after applyig the pipeline to test images.
 
 #### 3. Describe how (and identify where in your code) you performed a perspective transform and provide an example of a transformed image.
 
-The code for my perspective transform includes a function called `warper()`, which appears in 4th and 5th code cell of `AdvanceLaneFinding.ipynb` .  The `warper()` function takes as inputs an image (`img`), source (`src`) and destination (`dst`) points.  I chose the hardcode the source and destination points in the following manner:
+The code for my perspective transform includes a function called `warper()`, which appears in 4th and 5th code cell of `AdvanceLaneFindingExplaination.ipynb` .  The `warper()` function takes as inputs an image (`img`), source (`src`) and destination (`dst`) points.  after experimentation I manually selected the 'src' and 'dst' points.
 
 ```python
-h,w = undistorted_exImg.shape[:2]
-
 # define source and destination points for transform
-src = np.float32([(575,464),
-                  (707,464), 
-                  (258,682), 
-                  (1049,682)])
-dst = np.float32([(450,0),
-                  (w-450,0),
-                  (450,h),
-                  (w-450,h)])
+src = np.float32([[  595,  450 ],
+       [  685,  450 ],
+       [ 1000,  660 ],
+       [  280,  660 ]])
+dst = np.float32([[  300,  0 ],
+       [  980,  0 ],
+       [ 980,  720 ],
+       [  300,  720 ]])
 ```
 
- I also choose the points programmatically but these points at the end worked with an assumption that that the camera position will remain constant and that the road in the videos will remain relatively flat.
+ The src and dst are selected with an assumption that that the camera position will remain constant and that the road in the videos will remain relatively flat.
  This resulted in the following source and destination points:
 
 | Source        | Destination   | 
 |:-------------:|:-------------:| 
-| 575, 464      | 450, 0        | 
-| 707, 464      | w-450, 0      |
-| 258, 682     | 450, h      |
-| 1049, 682      | w-450, h        |
+| 595, 450      | 300, 0        | 
+| 685, 450      | 980, 0      |
+| 1000, 660     | 980, 720      |
+| 280, 660      | 300, 720        |
 
 I verified that my perspective transform was working as expected by drawing the `src` and `dst` points onto a test image and its warped counterpart to verify that the lines appear parallel in the warped image.
 
@@ -104,25 +102,27 @@ I verified that my perspective transform was working as expected by drawing the 
 
 #### 4. Describe how (and identify where in your code) you identified lane-line pixels and fit their positions with a polynomial?
 
-Jupyter notebook with functions "sliding_window_polyfit" and "polyfit_using_prev_fit" identifies lane lines and fit a second order polynomial to both right and left lane lines. an histogram of the bottom half of the image and finds the bottom-most x position (or "base") of the left and right lane lines. I changed into quarters of the histogram just left and right of the midpoint. This helped to reject lines from adjacent lanes. The function then identifies ten windows from which to identify lane pixels, each one centered on the midpoint of the pixels from the window below. This effectively "follows" the lane lines up to the top of the binary image, and speeds processing by only searching for activated pixels over a small portion of the image. Pixels belonging to each lane line are identified and the Numpy polyfit() method fits a second order polynomial to each set of pixels. The image below demonstrates how this process works:
+Jupyter notebook with functions "polyfit" and "previous_fit" identifies lane lines and fit a second order polynomial to both right and left lane lines. an histogram of the bottom half of the image and finds the bottom-most x position (or "base") of the left and right lane lines. The function then identifies ten windows from which to identify lane pixels, each one centered on the midpoint of the pixels from the window below. This effectively "follows" the lane lines up to the top of the binary image, and speeds processing by only searching for activated pixels over a small portion of the image. Pixels belonging to each lane line are identified and the Numpy polyfit() method fits a second order polynomial to each set of pixels. The image below demonstrates how this process works:
 
 ![alt text][image9]
 <br />histogram with the two peaks nearest the center are visible from below image<br />
 ![alt text][image10]
- <br />using `polyfit_using_prev_fit` I generated the below image. The green shaded area is the range from the previous fit, and the yellow lines and red and blue pixels are from the current image<br />
+ <br />using `previous_fit` I generated the below image. The green shaded area is the range from the previous fit, and the yellow lines and red and blue pixels are from the current image<br />
 ![alt text][image11]
 
 #### 5. Describe how (and identify where in your code) you calculated the radius of curvature of the lane and the position of the vehicle with respect to center.
 
-The code for the raduis of curvature of the lane is in cell titled "Radius Curvature" using this line of code (The overall logic):
-after calculating (the y-squared coefficient) of the second order polynomial fit.<br />
-`curve_radius = ((1 + (2*first coefficient*y_0*y_meters_per_pixel + second (y) coefficient)**2)**1.5) / np.absolute(2*first coefficient)`<br />
-y_0 is the y position within the image upon which the curvature calculation is based. y_meters_per_pixel is the factor used for converting from pixels to meters. This conversion was also used to generate a new fit with coefficients in terms of meters.
-
+The code for the raduis of curvature of the lane is in cell titled "calc_curv_rad_and_center_dist" using this line of code (The overall logic):
+` left_curverad = ((1 + (2*left_fit_cr[0]*y_eval*ym_per_pix + left_fit_cr[1])**2)**1.5) / np.absolute(2*left_fit_cr[0])`
+   ` right_curverad = ((1 + (2*right_fit_cr[0]*y_eval*ym_per_pix + right_fit_cr[1])**2)**1.5) / np.absolute(2*right_fit_cr[0])`
 The position of the vehicle with respect to the center of the lane is calculated with the following lines of code:<br />
 
-`lane_center_position = (r_fit_x_int + l_fit_x_int) /2
-center_dist = (car_position - lane_center_position) * x_meters_per_pix`
+` car = binary_warped.shape[1]/2
+  left_fit_line = l_fit[0]*h**2 + l_fit[1]*h + l_fit[2]
+  right_fit_line = r_fit[0]*h**2 + r_fit[1]*h + r_fit[2]
+  center_lane = (left_fit_line + right_fit_line) /2
+  center = (car - center_lane) * xm_per_pix
+    `
 
 #### 6. Provide an example image of your result plotted back down onto the road such that the lane area is identified clearly.
 
