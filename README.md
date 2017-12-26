@@ -62,11 +62,11 @@ Similarly the below image resulted when S-channel gradient is applied..
 
 ![alt text][image7]
 descroption of pipeline
-*Input image will be undistorted using the prameters calcuated from calibration
-*Perspective transformed applied to the undistorted image
-*L-channel gradiet binary image calculated from transformed image
-*S-channel gradient binary image calculated from transformed image
-*Both binary images are combined to create a combined image
+1. Input image will be undistorted using the prameters calcuated from calibration
+2. Perspective transformed applied to the undistorted image
+3. L-channel gradiet binary image calculated from transformed image
+4. S-channel gradient binary image calculated from transformed image
+5. Both binary images are combined to create a combined image
 The below image is resulted after applyig the pipeline to test images.
 ![alt text][image8]
 
