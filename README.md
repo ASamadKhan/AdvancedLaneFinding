@@ -112,16 +112,16 @@ Jupyter notebook with functions "polyfit" and "previous_fit" identifies lane lin
 
 #### 5. Describe how (and identify where in your code) you calculated the radius of curvature of the lane and the position of the vehicle with respect to center.
 
-The code for the raduis of curvature of the lane is in cell titled "calc_curv_rad_and_center_dist" using this line of code (The overall logic):
-` left_curverad = ((1 + (2*left_fit_cr[0]*y_eval*ym_per_pix + left_fit_cr[1])**2)**1.5) / np.absolute(2*left_fit_cr[0])`
-   ` right_curverad = ((1 + (2*right_fit_cr[0]*y_eval*ym_per_pix + right_fit_cr[1])**2)**1.5) / np.absolute(2*right_fit_cr[0])`
+The code for the raduis of curvature of the lane is in cell titled "calc_curv_rad_and_center_dist" using this line of code (The overall logic):<br>
+` left_curverad = ((1 + (2*left_fit_cr[0]*y_eval*ym_per_pix + left_fit_cr[1])**2)**1.5) / np.absolute(2*left_fit_cr[0])`<br>
+   ` right_curverad = ((1 + (2*right_fit_cr[0]*y_eval*ym_per_pix + right_fit_cr[1])**2)**1.5) / np.absolute(2*right_fit_cr[0])`<br>
 The position of the vehicle with respect to the center of the lane is calculated with the following lines of code:<br />
 
-` car = binary_warped.shape[1]/2
-  left_fit_line = l_fit[0]*h**2 + l_fit[1]*h + l_fit[2]
-  right_fit_line = r_fit[0]*h**2 + r_fit[1]*h + r_fit[2]
-  center_lane = (left_fit_line + right_fit_line) /2
-  center = (car - center_lane) * xm_per_pix
+` car = binary_warped.shape[1]/2 <br>
+  left_fit_line = l_fit[0]*h**2 + l_fit[1]*h + l_fit[2] <br>
+  right_fit_line = r_fit[0]*h**2 + r_fit[1]*h + r_fit[2] <br>
+  center_lane = (left_fit_line + right_fit_line) /2      <br>
+  center = (car - center_lane) * xm_per_pix              <br>      
     `
 
 #### 6. Provide an example image of your result plotted back down onto the road such that the lane area is identified clearly.
