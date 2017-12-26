@@ -1,8 +1,4 @@
-## Writeup Template
 
-### You can use this file as a template for your writeup if you want to submit it as a markdown file, but feel free to use some other method and submit a pdf if you prefer.
-
----
 
 **Advanced Lane Finding Project**
 
@@ -36,21 +32,13 @@ The goals / steps of this project are the following:
 
 ## [Rubric](https://review.udacity.com/#!/rubrics/571/view) Points
 
-### Here I will consider the rubric points individually and describe how I addressed each point in my implementation.  
 
----
-
-### Writeup / README
-
-#### 1. Provide a Writeup / README that includes all the rubric points and how you addressed each one.  You can submit your writeup as markdown or pdf.  [Here](https://github.com/udacity/CarND-Advanced-Lane-Lines/blob/master/writeup_template.md) is a template writeup for this project you can use as a guide and a starting point.  
-
-You're reading it!
 
 ### Camera Calibration
 
 #### 1. Briefly state how you computed the camera matrix and distortion coefficients. Provide an example of a distortion corrected calibration image.
 
-The code for this step is contained in the first code cell of the IPython notebook located in mai folder with name AdvanceLaneFinding.ipynb".
+The code for this step is contained in the first code cell of the IPython notebook located in main folder with name AdvanceLaneFindingExplaination..ipynb".
 
 An input comprises of number of chessboard images taken with the same camera from different angles. The chessboard has (9,6) corner points. For each chessboard image corners are detected using `findChessboardCorner` cv2 function. The detected image corners are added into **imgpoints** list, which are in fact the pixel locations of chessboard corners for each image. The corners are drawn and siplayed in the below figure usig `drawChessboardCorners` function.
 ![alt text][image1]
@@ -65,17 +53,21 @@ The image below shows the results of applying undistort to one of the project te
 ![alt text][image3]
 The undistort is more clear from the corners and the hood of the car.
 #### 2. Describe how (and identify where in your code) you used color transforms, gradients or other methods to create a thresholded binary image.  Provide an example of a binary image result.
-
-I used a combination of color and gradient thresholds to generate a binary image but it was not working well for me. below image shows different color channels for 3 color spaces.
-
+below image shows R,G,B chanels for RGB colorspace and H,L,S channels for HLS colorspace..
 ![alt text][image5]
-I chose to use just the L channel of the HLS color space to isolate white lines as shown in the below image
+I used a combination of color and gradient thresholds to generate a binary image . For me R-channel combined with gradient and S-channel with gradient worked very well.  
+Below image shows the result when R-channel with gradient is applied
 ![alt text][image6]
-I Used  B channel of the LAB colorspace to isolate yellow lines as shown in the below image.
+Similarly the below image resulted when S-channel gradient is applied..
 
 ![alt text][image7]
-Below are the result of applying pipeline to test images 
-
+descroption of pipeline
+*Input image will be undistorted using the prameters calcuated from calibration
+*Perspective transformed applied to the undistorted image
+*L-channel gradiet binary image calculated from transformed image
+*S-channel gradient binary image calculated from transformed image
+*Both binary images are combined to create a combined image
+The below image is resulted after applyig the pipeline to test images.
 ![alt text][image8]
 
 #### 3. Describe how (and identify where in your code) you performed a perspective transform and provide an example of a transformed image.
