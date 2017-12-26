@@ -66,7 +66,7 @@ descroption of pipeline
 2. Perspective transformed applied to the undistorted image
 3. L-channel gradiet binary image calculated from transformed image
 4. S-channel gradient binary image calculated from transformed image
-5. Both binary images are combined to create a combined image
+5. Both binary images are combined to create a combined image <br>
 The below image is resulted after applyig the pipeline to test images.
 ![alt text][image8]
 
